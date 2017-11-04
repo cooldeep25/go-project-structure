@@ -1,0 +1,24 @@
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+const (
+	PORT = "5000"
+)
+
+func main() {
+	http.HandleFunc("/", hello)
+	fmt.Println("listening...")
+	// err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	err := http.ListenAndServe(":"+PORT, nil)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func hello(res http.ResponseWriter, req *http.Request) {
+	fmt.Fprintln(res, "hello, world")
+}
